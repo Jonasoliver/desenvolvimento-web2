@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id=" dados">
+        <label for = 'idade'>idade</label>
+        <input type="number" id="idade">
+        <br>
+        <button onclick= 'calcularIdade()'>ok</button>
+        <br>
+        <div id="resultado"></div> 
+    </div>
+
+    <script>
+        function calcularIdade() {
+            const idade = document.getElementById('idade').value;
+    
+        let classificacao;
+        if(idade< 15) {
+         classificacao = 'criança'   
+        } else if(idade < 30){
+            classificacao = 'jovem'
+        }else if(idade < 60){
+            classificacao= 'adulto'
+        }else{
+            classificacao = 'idoso'
+        }
+        const resultado = document.getElementById('resultado');
+        resultado.innerHTML = resultado.innerHTML = `"Você é ${classificacao}"`;
+        }
+        </script>
+        </body>
+</html>

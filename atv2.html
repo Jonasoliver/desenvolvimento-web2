@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id=" dados">
+    <label for = 'nota1'>nota 1</label>
+    <input type="number" id="nota1">
+    <br>
+    <label for = 'nota2'>nota 2</label>
+    <input type="number" id="nota2">
+    <br>
+    <label for = 'nota3'>nota 3</label>
+    <input type="number" id="nota3">
+    <button onclick= 'calcularNota()'>calcular</button>
+    <br>
+    <div id="notas"></div> 
+<script>
+    function calcularNota(){
+        const nota1 = parseFloat(document.getElementById('nota1').value);
+        const nota2 = parseFloat(document.getElementById('nota2').value);
+        const nota3 = parseFloat(document.getElementById('nota3').value);
+    const notaFinal = (2 * nota1 + 5 * nota2 + 3 * nota3) / 10;
+  
+
+    let comparar;
+        if(notaFinal > 9) {
+            comparar = 'nota A'   
+        } else if(notaFinal >= 8){
+            comparar = 'nota b'
+        }else if(notaFinal >= 7){
+            comparar= 'nota c'
+        } else if(notaFinal >= 6){
+            comparar = 'nota d'
+        }else if(notaFinal >= 5){
+            comparar = 'nota E'
+        }else{
+            comparar = 'nota F'
+        }
+        const notas = document.getElementById('notas');
+        notas.innerHTML = notas.innerHTML = `"A média do aluno é: ${notaFinal}, e sua classificação é: ${comparar}"`;
+    }
+</script>
+</body>
+</html>

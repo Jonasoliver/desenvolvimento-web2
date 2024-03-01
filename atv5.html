@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folha de Pagamento</title>
+</head>
+<body>
+    <div id="dados">
+        <label for="CPF">CPF</label>
+        <input type="number" id="CPF">
+        <br>
+        <label for="horas">Horas mês</label>
+        <input type="number" id="horas">
+        <br>
+        <label for="turno">Turno (M, V, N)</label>
+        <input type="text" id="turno">
+        <br>
+        <label for="categoria">Categoria (F ou G)</label>
+        <input type="text" id="categoria">
+        <br>
+        <label for="salario">Salário Mínimo</label>
+        <input type="number" id="salario">
+        <button onclick="funcionario()">Calcular</button>
+    </div>
+    <div id="resultado"></div>
+
+<script>
+function funcionario() {
+  // Obter valores dos inputs
+  const CPF = document.getElementById('CPF').value;
+  const horas = parseInt(document.getElementById('horas').value);
+  const turno = document.getElementById('turno').value.toUpperCase();
+  const categoria = document.getElementById('categoria').value.toUpperCase();
+  const salarioMinimo = parseFloat(document.getElementById('salario').value);
+
+  // Função para calcular o valor por hora
+  function HRsalario(categoria, turno) {
+    let valorHora = 0;
+    switch (categoria) {
+      case 'F':
+        switch (turno) {
+          case 'M':
+          case 'V':
+            valorHora = 0.01 * salarioMinimo;
+            break;
+          case 'N':
+            valorHora = 0.02 * salarioMinimo;
+            break;
+        }
+        break;
+      case 'G':
+        switch (turno) {
+          case 'M':
+          case 'V':
+            valorHora = 0.04 * salarioMinimo;
+            break;
+        }
+        break;
+    }
+    return valorHora;
+  }
+
+  // Calcular valor hora e valor final
+  const valorHora = HRsalario(categoria, turno);
+  const valorFinal = valorHora * horas;
+
+  // Declarar a variável auxilio dentro da função
+  let auxilio;
+
+  // Calcular o valor do auxilio
+  if(valorFinal <= 800){
+    auxilio = salarioMinimo * 0.25;
+  }else if(valorFinal <= 1200){
+    auxilio = salarioMinimo * 0.20;
+  }else{
+    auxilio = salarioMinimo * 0.15;
+  }
+  let salarioTOTAL = valorFinal + auxilio
+
+  // Exibir o resultado final
+  const resultado = document.getElementById('resultado');
+  resultado.innerHTML = `
+    Código do Funcionário: ${CPF}<br>
+    Número de Horas Trabalhadas: ${horas}<br>
+    Valor por Hora Trabalhada: R$${valorHora.toFixed(2)}<br>
+    Salário inicial: R$${valorFinal.toFixed(2)}<br>
+    Auxilio alimentação: R$${auxilio.toFixed(2)}<br>
+    salario total com auxilio: ${salarioTOTAL}`;
+}
+</script>
+</body>
+</html>

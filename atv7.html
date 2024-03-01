@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter Data por Extenso</title>
+</head>
+<body>
+    <input type="text" id="data" placeholder="dd/mm/aaaa">
+    <button onclick="converterData()">Converter</button>
+    <p id="dataExtenso"></p>
+
+<script>
+    function converterData() {
+    // Obter a data digitada pelo usuário
+    const dataInformada = document.getElementById("data").value;
+
+    // Separar os componentes da data em um array
+    const partesData = dataInformada.split("/");
+
+    // Obter o dia, mês e ano
+    const dia = parseInt(partesData[0]);
+    const mes = parseInt(partesData[1]);
+    const ano = parseInt(partesData[2]);
+
+    // Obter o nome do mês por extenso
+    const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+    const nomeMes = meses[mes - 1];
+
+    // Exibir a data por extenso
+    const dataExtenso = `${dia} de ${nomeMes} de ${ano}`;
+    document.getElementById("dataExtenso").innerHTML = dataExtenso;
+}
+
+</script>
+</body>
+</html>
